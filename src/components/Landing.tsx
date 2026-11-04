@@ -1,11 +1,8 @@
-﻿"use client";
+"use client";
 
 /* ============================================================================
-   BESTCAR - ESTÃ‰TICA AUTOMOTIVA | Landing Page
+   BESTCAR - ESTÉTICA AUTOMOTIVA | Landing Page
    Next.js (App Router) + Tailwind v4 + GSAP (ScrollTrigger / @gsap/react)
-   ----------------------------------------------------------------------------
-   Toda a manutenÃ§Ã£o de conteÃºdo (textos, links, horÃ¡rios, serviÃ§os, depoimentos)
-   fica nas constantes abaixo. Os componentes mais abaixo sÃ³ renderizam.
    ============================================================================ */
 
 import { useRef, useState } from "react";
@@ -41,16 +38,15 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 /* ------------------------------ CONSTANTES -------------------------------- */
 
 const BUSINESS = {
-  name: "BestCar - EstÃ©tica Automotiva",
+  name: "BestCar - Estética Automotiva",
   shortName: "BEST CAR",
-  tagline: "PRO DETAIL â€¢ MAFRA - SC",
+  tagline: "PRO DETAIL • MAFRA - SC",
   phoneLabel: "(47) 99251-2394",
   phoneTel: "+5547992512394",
   whatsappNumber: "5547992512394",
   instagramHandle: "@bestcarriomafra",
   instagramUrl: "https://www.instagram.com/bestcarriomafra",
-  facebookLabel: "BestCar - EstÃ©tica Automotiva",
-  // Troque pelo link da pÃ¡gina oficial quando disponÃ­vel:
+  facebookLabel: "BestCar - Estética Automotiva",
   facebookUrl: "https://www.facebook.com/search/top?q=BestCar%20Est%C3%A9tica%20Automotiva%20Mafra",
   addressLine1: "Av. Cel. Severiano Maia, 1289",
   addressLine2: "Vila Buenos Aires, Mafra - SC, CEP 89300-000",
@@ -58,33 +54,33 @@ const BUSINESS = {
 } as const;
 
 const WHATSAPP_DEFAULT_MESSAGE =
-  "OlÃ¡, visitei o site da BestCar e gostaria de agendar um serviÃ§o para o meu veÃ­culo.";
+  "Olá, visitei o site da BestCar e gostaria de agendar um serviço para o meu veículo.";
 
 const waLink = (message: string = WHATSAPP_DEFAULT_MESSAGE) =>
   `https://wa.me/${BUSINESS.whatsappNumber}?text=${encodeURIComponent(message).replace(/%20/g, "+")}`;
 
 const serviceWaLink = (service: string) =>
-  waLink(`OlÃ¡, visitei o site da BestCar e gostaria de solicitar o serviÃ§o: ${service}.`);
+  waLink(`Olá, visitei o site da BestCar e gostaria de solicitar o serviço: ${service}.`);
 
 const MAPS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(BUSINESS.addressFull)}`;
 const WAZE_URL = `https://waze.com/ul?q=${encodeURIComponent(BUSINESS.addressFull)}&navigate=yes`;
 const MAPS_EMBED_URL = `https://maps.google.com/maps?q=${encodeURIComponent(BUSINESS.addressFull)}&z=16&output=embed`;
 
 const NAV_LINKS = [
-  { href: "#servicos", label: "ServiÃ§os" },
+  { href: "#servicos", label: "Serviços" },
   { href: "#polimento", label: "Polimento" },
-  { href: "#vitrificacao", label: "VitrificaÃ§Ã£o" },
+  { href: "#vitrificacao", label: "Vitrificação" },
   { href: "#depoimentos", label: "Depoimentos" },
-  { href: "#localizacao", label: "LocalizaÃ§Ã£o" },
+  { href: "#localizacao", label: "Localização" },
 ] as const;
 
 const HERO = {
-  eyebrow: "ESTÃ‰TICA AUTOMOTIVA PREMIUM â€¢ MAFRA - SC & RIO NEGRO - PR",
-  titleLines: ["Detailing &", "cuidado automotivo", "de alto nÃ­vel."],
+  eyebrow: "ESTÉTICA AUTOMOTIVA PREMIUM • MAFRA - SC & RIO NEGRO - PR",
+  titleLines: ["Detailing &", "cuidado automotivo", "de alto nível."],
   subtitle:
-    "Da lavaÃ§Ã£o detalhada Ã  vitrificaÃ§Ã£o cerÃ¢mica de alta durabilidade. Tratamento exclusivo para quem busca acabamento espelhado, proteÃ§Ã£o real e zelo absoluto pelo veÃ­culo.",
+    "Da lavação detalhada à vitrificação cerâmica de alta durabilidade. Tratamento exclusivo para quem busca acabamento espelhado, proteção real e zelo absoluto pelo veículo.",
   cta: "Agendar pelo WhatsApp",
-  proof: "5.0 no Google â€¢ Clientes 100% Satisfeitos em Mafra e RegiÃ£o",
+  proof: "5.0 no Google • Clientes 100% Satisfeitos em Mafra e Região",
 };
 
 type Service = {
@@ -94,14 +90,14 @@ type Service = {
   icon: LucideIcon;
   badge?: string;
   featured?: boolean;
-  span: string; // classes de grid (bento)
+  span: string;
 };
 
 const SERVICES: Service[] = [
   {
-    title: "LavaÃ§Ã£o Detalhada / Premium",
+    title: "Lavação Detalhada / Premium",
     description:
-      "O serviÃ§o carro-chefe da casa. Limpeza tÃ©cnica minuciosa que devolve a sensaÃ§Ã£o de carro zero, protegendo plÃ¡sticos, borrachas e caixas de rodas.",
+      "O serviço carro-chefe da casa. Limpeza técnica minuciosa que devolve a sensação de carro zero, protegendo plásticos, borrachas e caixas de rodas.",
     icon: Droplets,
     badge: "Carro-chefe da casa",
     featured: true,
@@ -109,31 +105,31 @@ const SERVICES: Service[] = [
   },
   {
     id: "polimento",
-    title: "Polimento Comercial & TÃ©cnico",
+    title: "Polimento Comercial & Técnico",
     description:
-      "CorreÃ§Ã£o precisa do verniz, eliminaÃ§Ã£o de riscos, swirls e marcas de lavagem, restaurando o brilho profundo.",
+      "Correção precisa do verniz, eliminação de riscos, swirls e marcas de lavagem, restaurando o brilho profundo.",
     icon: Sparkles,
     span: "lg:col-span-2",
   },
   {
     id: "vitrificacao",
-    title: "ProteÃ§Ã£o CerÃ¢mica & VitrificaÃ§Ã£o",
+    title: "Proteção Cerâmica & Vitrificação",
     description:
-      "Tecnologia de nano-proteÃ§Ã£o que sela os poros da pintura contra raios UV, seiva e intempÃ©ries com efeito hidrofÃ³bico e brilho intenso.",
+      "Tecnologia de nano-proteção que sela os poros da pintura contra raios UV, seiva e intempéries com efeito hidrofóbico e brilho intenso.",
     icon: ShieldCheck,
     span: "lg:col-span-2",
   },
   {
-    title: "HigienizaÃ§Ã£o Interna Completa",
+    title: "Higienização Interna Completa",
     description:
-      "Limpeza e desinfecÃ§Ã£o profunda de estofados, forros de porta, painel e carpetes, eliminando fungos, bactÃ©rias e odores.",
+      "Limpeza e desinfecção profunda de estofados, forros de porta, painel e carpetes, eliminando fungos, bactérias e odores.",
     icon: Armchair,
     span: "lg:col-span-2",
   },
   {
-    title: "Pacotes para VeÃ­culos de Grande Porte",
+    title: "Pacotes para Veículos de Grande Porte",
     description:
-      "Pacotes especiais com cuidados sob medida para caminhonetes (Ram, S10, Hilux), utilitÃ¡rios e esportivos.",
+      "Pacotes especiais com cuidados sob medida para caminhonetes (Ram, S10, Hilux), utilitários e esportivos.",
     icon: Truck,
     span: "lg:col-span-2 md:col-span-2",
   },
@@ -142,81 +138,81 @@ const SERVICES: Service[] = [
 const PILLARS = [
   {
     icon: Award,
-    title: "EducaÃ§Ã£o e Atendimento Nota Mil",
+    title: "Educação e Atendimento Nota Mil",
     description:
-      "Respeito, zelo e transparÃªncia com o cliente desde a recepÃ§Ã£o atÃ© a entrega do veÃ­culo.",
+      "Respeito, zelo e transparência com o cliente desde a recepção até a entrega do veículo.",
   },
   {
     icon: FlaskConical,
-    title: "Produtos e QuÃ­micos de NÃ­vel Internacional",
+    title: "Produtos e Químicos de Nível Internacional",
     description:
-      "Produtos biodegradÃ¡veis de pH neutro e compostos polidores de alta tecnologia, para um resultado seguro e duradouro.",
+      "Produtos biodegradáveis de pH neutro e compostos polidores de alta tecnologia, para um resultado seguro e duradouro.",
   },
   {
     icon: Warehouse,
     title: "Estrutura Ampla na Severiano Maia",
     description:
-      "EspaÃ§o preparado para atender com seguranÃ§a desde carros compactos atÃ© picapes gigantes.",
+      "Espaço preparado para atender com segurança desde carros compactos até picapes gigantes.",
   },
 ];
 
 const TESTIMONIALS = [
   {
     quote:
-      "Os rapazes muito educados e gentis... o trabalho simplesmente perfeito... com certeza no meu carro sÃ³ eles que farÃ£o o trabalho de limpeza a partir de hoje.",
+      "Os rapazes muito educados e gentis... o trabalho simplesmente perfeito... com certeza no meu carro só eles que farão o trabalho de limpeza a partir de hoje.",
     author: "Cliente verificado do Google",
-    meta: "AvaliaÃ§Ã£o no Google",
+    meta: "Avaliação no Google",
   },
   {
     quote:
-      "Os meninos trabalham muito bem, um serviÃ§o de qualidade, lugar bom, tratamento Ã³timo, uma Ã³tima educaÃ§Ã£o. SÃ³ vou levar carro lÃ¡.",
+      "Os meninos trabalham muito bem, um serviço de qualidade, lugar bom, tratamento ótimo, uma ótima educação. Só vou levar carro lá.",
     author: "Oscar De Lima Santos",
-    meta: "Local Guide â€¢ Google",
+    meta: "Local Guide • Google",
   },
   {
     quote:
-      "Piazada gente boa demais... Quando falam que o trabalho Ã© Premium... nÃ£o mentiram... os caras sÃ£o bons mesmo.",
+      "Piazada gente boa demais... Quando falam que o trabalho é Premium... não mentiram... os caras são bons mesmo.",
     author: "Ilandir Alves da Rocha",
-    meta: "AvaliaÃ§Ã£o no Google",
+    meta: "Avaliação no Google",
   },
   {
     quote:
-      "ServiÃ§os diferenciados, lavaÃ§Ã£o detalhada/premium. Atendimento excelente, zelo com seu veÃ­culo e preÃ§os compatÃ­veis...",
+      "Serviços diferenciados, lavação detalhada/premium. Atendimento excelente, zelo com seu veículo e preços compatíveis...",
     author: "Renan Martins Moreira",
-    meta: "AvaliaÃ§Ã£o no Google",
+    meta: "Avaliação no Google",
   },
 ];
 
 const FAQ = [
   {
-    q: "Qual Ã© o tempo mÃ©dio de execuÃ§Ã£o de uma lavaÃ§Ã£o premium ou polimento tÃ©cnico?",
-    a: "A lavaÃ§Ã£o detalhada/premium normalmente Ã© concluÃ­da no mesmo dia. JÃ¡ o polimento tÃ©cnico depende do estado da pintura e do porte do veÃ­culo, podendo levar mais tempo. ApÃ³s avaliar o carro, informamos o prazo exato antes de comeÃ§ar.",
+    q: "Qual é o tempo médio de execução de uma lavação premium ou polimento técnico?",
+    a: "A lavação detalhada/premium normalmente é concluída no mesmo dia. Já o polimento técnico depende do estado da pintura e do porte do veículo, podendo levar mais tempo. Após avaliar o carro, informamos o prazo exato antes de começar.",
   },
   {
-    q: "A vitrificaÃ§Ã£o cerÃ¢mica substitui a necessidade de encerar o carro?",
-    a: "Sim. A vitrificaÃ§Ã£o forma uma camada de nano-proteÃ§Ã£o mais durÃ¡vel que a cera comum, com efeito hidrofÃ³bico e proteÃ§Ã£o contra raios UV, seiva e intempÃ©ries. Com a manutenÃ§Ã£o correta, vocÃª dispensa o encerar frequente.",
+    q: "A vitrificação cerâmica substitui a necessidade de encerar o carro?",
+    a: "Sim. A vitrificação forma uma camada de nano-proteção mais durável que a cera comum, com efeito hidrofóbico e proteção contra raios UV, seiva e intempéries. Com a manutenção correta, você dispensa o encerar frequente.",
   },
   {
-    q: "VocÃªs atendem caminhonetes de grande porte como Ram e F-250?",
-    a: "Sim! Nossa estrutura na Av. Severiano Maia foi adaptada para receber com seguranÃ§a desde carros compactos atÃ© picapes e utilitÃ¡rios de grande porte, com pacotes sob medida.",
+    q: "Vocês atendem caminhonetes de grande porte como Ram e F-250?",
+    a: "Sim! Nossa estrutura na Av. Severiano Maia foi adaptada para receber com segurança desde carros compactos até picapes e utilitários de grande porte, com pacotes sob medida.",
   },
   {
-    q: "Ã‰ necessÃ¡rio agendar horÃ¡rio com antecedÃªncia para os serviÃ§os?",
-    a: "Recomendamos agendar pelo WhatsApp para garantir o seu horÃ¡rio e a pontualidade do atendimento. Ã‰ rÃ¡pido: basta chamar e informar o veÃ­culo e o serviÃ§o desejado.",
+    q: "É necessário agendar horário com antecedência para os serviços?",
+    a: "Recomendamos agendar pelo WhatsApp para garantir o seu horário e a pontualidade do atendimento. É rápido: basta chamar e informar o veículo e o serviço desejado.",
   },
 ];
 
 const HOURS = [
-  { day: "Segunda a Sexta", time: "08:30 Ã s 12:00 e 13:00 Ã s 18:00" },
-  { day: "SÃ¡bado", time: "08:00 Ã s 13:00" },
+  { day: "Segunda a Sexta", time: "08:30 às 12:00 e 13:00 às 18:00" },
+  { day: "Sábado", time: "08:00 às 13:00" },
   { day: "Domingo", time: "Fechado", closed: true },
 ] as const;
 
 const FOOTER = {
-  title: "Pronto para devolver o aspecto de zero quilÃ´metro ao seu carro?",
-  subtitle: "Chame no WhatsApp e agende seu horÃ¡rio. Atendimento gentil, pontual e cuidado minucioso.",
+  title: "Pronto para devolver o aspecto de zero quilômetro ao seu carro?",
+  subtitle: "Chame no WhatsApp e agende seu horário. Atendimento gentil, pontual e cuidado minucioso.",
   cta: "Agendar agora no WhatsApp",
-  credits: `Â© ${new Date().getFullYear()} BestCar - EstÃ©tica Automotiva (PRO detail | BEST CAR). Todos os direitos reservados.`,
+  credits: `© ${new Date().getFullYear()} BestCar - Estética Automotiva (PRO detail | BEST CAR). Todos os direitos reservados.`,
 };
 
 /* ------------------------------ UI ATOMS ---------------------------------- */
@@ -250,7 +246,6 @@ const GoogleStars = ({ className = "size-4" }: { className?: string }) => (
   </span>
 );
 
-// Lucide v1 nÃ£o inclui logos de marcas, entÃ£o usamos SVGs inline.
 const InstagramIcon = ({ className = "size-5" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
     <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -272,17 +267,17 @@ function Navbar() {
   return (
     <header
       id="site-nav"
-      className="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-zinc-950/0 backdrop-blur-[2px]"
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-zinc-950/80 backdrop-blur-md transition-colors duration-300"
     >
-      <Wrap className="flex h-16 items-center justify-between gap-4 sm:h-20">
-        <a href="#top" className="flex items-center gap-3" aria-label="BestCar - inÃ­cio">
+      <Wrap className="flex h-20 items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-3 py-1" aria-label="BestCar - início">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/estetica/logo-bestcar.png"
             alt="BestCar Pro Detail"
-            width={900}
-            height={467}
-            className="h-9 w-auto sm:h-11"
+            width={987}
+            height={491}
+            className="h-10 w-auto sm:h-12 drop-shadow-[0_2px_12px_rgba(255,255,255,0.08)]"
           />
           <span className="hidden flex-col leading-none sm:flex">
             <span className="font-display text-base font-bold tracking-tight text-zinc-100">{BUSINESS.shortName}</span>
@@ -306,7 +301,7 @@ function Navbar() {
             className="inline-flex min-h-11 items-center gap-2 rounded-full bg-zinc-100 px-5 text-sm font-bold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
           >
             <MessageCircle className="size-4" aria-hidden />
-            <span className="hidden sm:inline">Agendar HorÃ¡rio</span>
+            <span className="hidden sm:inline">Agendar Horário</span>
             <span className="sm:hidden">Agendar</span>
           </a>
           <button
@@ -350,14 +345,15 @@ function Hero() {
       {/* Imagem adaptada: mobile (retrato 9:16) e desktop (widescreen) */}
       <picture>
         <source media="(min-width: 768px)" srcSet="/estetica/hero-desktop.jpg" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/estetica/hero-mobile.jpg"
-          alt="Carro esportivo preto com farol LED aceso em estÃºdio de detailing"
+          alt="Carro esportivo preto com farol LED aceso em estúdio de detailing"
           fetchPriority="high"
           className="absolute inset-0 -z-10 h-full min-h-[100dvh] w-full object-cover object-bottom-right md:object-center"
         />
       </picture>
-      {/* DegradÃª: topo no mobile, esquerda no desktop */}
+      {/* Degradê de fusão */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-950/70 to-transparent md:bg-gradient-to-r md:from-zinc-950 md:via-zinc-950/80 md:to-transparent" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-zinc-950 to-transparent" />
 
@@ -395,7 +391,7 @@ function Hero() {
               href="#servicos"
               className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-8 text-base font-semibold text-zinc-200 transition-all duration-300 hover:border-red-600/40 hover:bg-white/5"
             >
-              Ver serviÃ§os
+              Ver serviços
             </a>
           </div>
 
@@ -409,7 +405,7 @@ function Hero() {
   );
 }
 
-/* ------------------------------ SERVIÃ‡OS ---------------------------------- */
+/* ------------------------------ SERVIÇOS ---------------------------------- */
 
 function ServiceCard({ s }: { s: Service }) {
   const Icon = s.icon;
@@ -444,7 +440,7 @@ function ServiceCard({ s }: { s: Service }) {
         rel="noopener noreferrer"
         className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-5 text-sm font-semibold text-zinc-100 transition-all duration-300 hover:border-red-600/60 hover:bg-red-600 hover:text-white sm:mt-auto"
       >
-        Solicitar este serviÃ§o
+        Solicitar este serviço
         <ArrowUpRight className="size-4" aria-hidden />
       </a>
     </article>
@@ -456,9 +452,9 @@ function Services() {
     <section id="servicos" className="relative py-20 sm:py-28">
       <Wrap>
         <SectionTitle
-          eyebrow="CardÃ¡pio de Detailing"
-          title="ServiÃ§os para quem exige acabamento espelhado"
-          intro="Cada etapa Ã© executada com tÃ©cnica, produtos certificados e atenÃ§Ã£o a cada detalhe do seu veÃ­culo."
+          eyebrow="Cardápio de Detailing"
+          title="Serviços para quem exige acabamento espelhado"
+          intro="Cada etapa é executada com técnica, produtos certificados e atenção a cada detalhe do seu veículo."
         />
         <div data-stagger className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
           {SERVICES.map((s) => (
@@ -476,7 +472,7 @@ function Pillars() {
   return (
     <section id="diferenciais" className="relative border-y border-white/5 bg-[#0c0c0f] py-20 sm:py-28">
       <Wrap>
-        <SectionTitle eyebrow="MÃ©todo PRO Detail" title="Por que a BestCar?" />
+        <SectionTitle eyebrow="Método PRO Detail" title="Por que a BestCar?" />
         <div data-stagger className="grid gap-4 md:grid-cols-3">
           {PILLARS.map((p, i) => {
             const Icon = p.icon;
@@ -520,7 +516,7 @@ function Testimonials() {
             <span className="font-display text-4xl font-extrabold text-zinc-100">5.0</span>
             <div>
               <GoogleStars />
-              <p className="mt-1 text-xs text-zinc-400">AvaliaÃ§Ãµes no Google</p>
+              <p className="mt-1 text-xs text-zinc-400">Avaliações no Google</p>
             </div>
           </div>
         </div>
@@ -533,7 +529,7 @@ function Testimonials() {
               className="flex flex-col rounded-3xl border border-white/10 bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-red-600/40 sm:p-8"
             >
               <GoogleStars />
-              <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-zinc-200">â€œ{t.quote}â€</blockquote>
+              <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-zinc-200">“{t.quote}”</blockquote>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
                 <span className="inline-flex size-10 items-center justify-center rounded-full bg-zinc-800 text-sm font-bold text-metal">
                   {t.author.charAt(0)}
@@ -592,13 +588,13 @@ function Faq() {
     <section id="faq" className="relative border-t border-white/5 bg-[#0c0c0f] py-20 sm:py-28">
       <Wrap className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
         <div data-reveal>
-          <Eyebrow>DÃºvidas frequentes</Eyebrow>
+          <Eyebrow>Dúvidas frequentes</Eyebrow>
           <h2 className="font-display text-3xl font-bold uppercase leading-[1.05] tracking-tight text-zinc-100 sm:text-5xl">
-            Tire suas dÃºvidas antes de agendar
+            Tire suas dúvidas antes de agendar
           </h2>
-          <p className="mt-5 text-zinc-400">NÃ£o achou o que procurava? Chame a equipe no WhatsApp.</p>
+          <p className="mt-5 text-zinc-400">Não achou o que procurava? Chame a equipe no WhatsApp.</p>
           <a
-            href={waLink("OlÃ¡, visitei o site da BestCar e tenho uma dÃºvida sobre os serviÃ§os.")}
+            href={waLink("Olá, visitei o site da BestCar e tenho uma dúvida sobre os serviços.")}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full border border-white/15 px-6 text-sm font-semibold text-zinc-100 transition-all duration-300 hover:border-red-600/40 hover:bg-white/5"
@@ -617,19 +613,19 @@ function Faq() {
   );
 }
 
-/* ------------------------------ LOCALIZAÃ‡ÃƒO ------------------------------- */
+/* ------------------------------ LOCALIZAÇÃO ------------------------------- */
 
 function Location() {
   return (
     <section id="localizacao" className="relative py-20 sm:py-28">
       <Wrap>
-        <SectionTitle eyebrow="LocalizaÃ§Ã£o, horÃ¡rios & contato" title="Venha conhecer a BestCar" />
+        <SectionTitle eyebrow="Localização, horários & contato" title="Venha conhecer a BestCar" />
         <div data-reveal className="grid overflow-hidden rounded-3xl border border-white/10 bg-card lg:grid-cols-2">
           <div className="flex flex-col gap-8 p-7 sm:p-10">
             <div className="flex gap-4">
               <MapPin className="mt-1 size-6 shrink-0 text-red-500" aria-hidden />
               <div>
-                <h3 className="font-display text-lg font-bold uppercase tracking-tight">EndereÃ§o</h3>
+                <h3 className="font-display text-lg font-bold uppercase tracking-tight">Endereço</h3>
                 <p className="mt-2 text-zinc-300">{BUSINESS.addressLine1}</p>
                 <p className="text-zinc-400">{BUSINESS.addressLine2}</p>
                 <div className="mt-4 flex flex-wrap gap-3">
@@ -640,7 +636,7 @@ function Location() {
                     className="inline-flex min-h-11 items-center gap-2 rounded-full bg-red-600 px-5 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-500"
                   >
                     <Navigation className="size-4" aria-hidden />
-                    TraÃ§ar Rota no Google Maps
+                    Traçar Rota no Google Maps
                   </a>
                   <a
                     href={WAZE_URL}
@@ -658,7 +654,7 @@ function Location() {
             <div className="flex gap-4">
               <Clock className="mt-1 size-6 shrink-0 text-red-500" aria-hidden />
               <div className="w-full">
-                <h3 className="font-display text-lg font-bold uppercase tracking-tight">HorÃ¡rio de atendimento</h3>
+                <h3 className="font-display text-lg font-bold uppercase tracking-tight">Horário de atendimento</h3>
                 <ul className="mt-3 divide-y divide-white/10">
                   {HOURS.map((h) => (
                     <li key={h.day} className="flex flex-col gap-0.5 py-2.5 sm:flex-row sm:justify-between">
@@ -694,7 +690,7 @@ function Location() {
 
           <div className="min-h-80 border-t border-white/10 lg:border-l lg:border-t-0">
             <iframe
-              title="Mapa - BestCar EstÃ©tica Automotiva em Mafra/SC"
+              title="Mapa - BestCar Estética Automotiva em Mafra/SC"
               src={MAPS_EMBED_URL}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -716,7 +712,14 @@ function Footer() {
       <Wrap className="relative py-20 text-center sm:py-28">
         <div data-reveal>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/estetica/logo-bestcar.png" alt="" width={900} height={467} className="mx-auto mb-8 h-20 w-auto" loading="lazy" />
+          <img
+            src="/estetica/logo-bestcar.png"
+            alt=""
+            width={987}
+            height={491}
+            className="mx-auto mb-8 h-20 w-auto drop-shadow-[0_4px_20px_rgba(255,255,255,0.06)]"
+            loading="lazy"
+          />
           <h2 className="mx-auto max-w-3xl font-display text-3xl font-bold uppercase leading-[1.05] tracking-tight text-zinc-100 sm:text-5xl">
             {FOOTER.title}
           </h2>
@@ -767,7 +770,7 @@ function FloatingWhatsApp() {
   );
 }
 
-/* ------------------------------ PÃGINA ------------------------------------ */
+/* ------------------------------ PÁGINA ------------------------------------ */
 
 export default function Landing() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -776,22 +779,22 @@ export default function Landing() {
     () => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Navbar: transparente -> bg-zinc-950/90 + blur + borda, suavemente na rolagem
+        // Navbar: suavemente ativa fundo com blur ao rolar
         gsap.to("#site-nav", {
-          backgroundColor: "rgba(9,9,11,0.9)",
-          borderBottomColor: "rgba(255,255,255,0.05)",
-          backdropFilter: "blur(12px)",
+          backgroundColor: "rgba(9,9,11,0.95)",
+          borderBottomColor: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(16px)",
           ease: "none",
-          scrollTrigger: { start: 10, end: 140, scrub: true },
+          scrollTrigger: { start: 10, end: 120, scrub: true },
         });
 
-        // Hero: entrada
-        gsap.from("[data-hero]", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.1, delay: 0.1 });
+        // Hero: entrada suave
+        gsap.from("[data-hero]", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.1, delay: 0.1 });
 
-        // TÃ­tulos / blocos soltos
+        // Títulos / blocos isolados
         gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
           gsap.from(el, {
-            y: 30,
+            y: 24,
             opacity: 0,
             duration: 0.8,
             ease: "power3.out",
@@ -799,10 +802,10 @@ export default function Landing() {
           });
         });
 
-        // Grids (serviÃ§os, pilares, depoimentos, FAQ): stagger
+        // Grids com stagger
         gsap.utils.toArray<HTMLElement>("[data-stagger]").forEach((grid) => {
           gsap.from(grid.querySelectorAll("[data-item]"), {
-            y: 30,
+            y: 24,
             opacity: 0,
             duration: 0.8,
             ease: "power3.out",
@@ -817,7 +820,7 @@ export default function Landing() {
   );
 
   return (
-    <div ref={containerRef} className="relative overflow-x-clip">
+    <div ref={containerRef} className="relative overflow-x-clip bg-zinc-950 text-zinc-100">
       <Navbar />
       <main>
         <Hero />
